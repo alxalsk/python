@@ -1,0 +1,37 @@
+from tkinter import *
+
+win = Tk()
+
+def afficher(nb):
+    text.insert(END, str(nb))
+
+def calculer():
+    if(text.get("1.0",END)!= "\n"):
+        res= eval(text.get("1.0", END))
+        clear()
+        text.insert("1.0",res)
+    
+def clear():
+    text.delete("1.0", END)
+
+text = Text(win)
+
+button1= Button(win, text= "1")
+button2 = Button(win,text="2")
+buttonplus = Button(win,text= "+")
+button = Button(win,text="=")
+buttonclear = Button(win, text="c")
+
+text.grid(column=0, row=0, columnspan=5)
+button1.grid(column=0, row= 1)
+button2.grid(column=1, row = 1)
+buttonplus.grid(column=2, row = 1)
+button.grid(column=0, row= 2)
+buttonclear.grid(column=1, row= 2)
+
+button1.bind("<Button-1>", lambda:afficher(1))
+button2.bind("<Button-1>", lambda:afficher(2))
+buttonplus.bind("<Button-1>", lambda:afficher("+"))
+button.bind("<Button-1>", calculer)
+buttonclear.bind("<Button-1>", clear)
+mainloop()
